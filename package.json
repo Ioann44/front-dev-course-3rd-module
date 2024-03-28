@@ -1,0 +1,10 @@
+{
+  "name": "2nd-module",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Ivan Yashin",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.3.2"
+  }
+}

@@ -1,0 +1,26 @@
+{
+	"dish": "Паста с курицей и овощами",
+	"ingredients": {
+	  "pasta": {
+		"type": "спагетти",
+		"amount": 200,
+		"unit": "г"
+	  },
+	  "chicken": {
+		"type": "курица",
+		"amount": 300,
+		"unit": "г"
+	  },
+	  "vegetables": ["помидоры", "перец", "лук"],
+	  "sauce": {
+		"type": "томатный",
+		"amount": 150,
+		"unit": "мл"
+	  },
+	  "spices": ["соль", "перец", "базилик"]
+	},
+	"cooking_time": 30,
+	"difficulty": "средняя",
+	"vegetarian": false
+  }
+  
