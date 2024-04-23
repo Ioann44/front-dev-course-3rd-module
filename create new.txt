@@ -1,0 +1,1 @@
+npx ng new lw3 --skip-tests --ssr=false --standalone=false --style=css
