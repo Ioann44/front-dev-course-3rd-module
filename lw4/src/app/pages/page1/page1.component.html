@@ -1,0 +1,16 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+	<div>
+		<label>Имя</label>
+		<input name="name" formControlName="name">
+	</div>
+	<div *ngIf="myForm.controls['name'].invalid && myForm.controls['name'].touched">Не указано имя</div>
+
+	<button type="submit" [disabled]="myForm.invalid">Отправить</button>
+</form>
+
+<div>
+	<h3>Имена</h3>
+	<ul>
+		<li *ngFor="let nameObj of names">{{nameObj.name}}</li>
+	</ul>
+</div>

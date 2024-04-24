@@ -1,0 +1,16 @@
+<div>
+	<div>
+		<label>Имя</label>
+		<input name="name" [(ngModel)]="name" (ngModelChange)="onNameChange()">
+	</div>
+	<div>
+		<button (click)="addName()">Добавить</button>
+	</div>
+</div>
+
+<div>
+	<h3>Имена</h3>
+	<ul>
+		<li *ngFor="let nameObj of names">{{nameObj.name}}</li>
+	</ul>
+</div>
