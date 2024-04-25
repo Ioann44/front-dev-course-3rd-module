@@ -1,0 +1,8 @@
+<link rel="stylesheet" href="../../app.component.css">
+
+<div>
+	<h3>Йода говорит:</h3>
+	<ul>
+		<li *ngFor="let line of joda_the_magister | reverse: {makeUpper: true}">{{line}}</li>
+	</ul>
+</div>
