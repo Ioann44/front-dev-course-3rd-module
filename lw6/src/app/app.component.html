@@ -1,19 +1,19 @@
 <!-- app.component.html -->
 <div>
-  <form (submit)="addTask($event)">
+  <form (submit)="addTask($event)" ngNativeValidate>
     <!-- Number (generated automatically) -->
     <input type="hidden" [(ngModel)]="newTask.id" name="id">
 
     <!-- Type (bug or task) -->
     <label for="type">Тип:</label>
-    <select id="type" [(ngModel)]="newTask.type" name="type">
+    <select id="type" [(ngModel)]="newTask.type" name="type" required>
       <option value="bug">Bug</option>
       <option value="task">Task</option>
     </select>
 
     <!-- Priority (critical/high/medium/low) -->
     <label for="priority">Приоритет:</label>
-    <select id="priority" [(ngModel)]="newTask.priority" name="priority">
+    <select id="priority" [(ngModel)]="newTask.priority" name="priority" required>
       <option value="critical">Critical</option>
       <option value="high">High</option>
       <option value="medium" selected>Medium</option>
@@ -22,7 +22,7 @@
 
     <!-- Status -->
     <label for="status">Статус:</label>
-    <select id="status" [(ngModel)]="newTask.status" name="status">
+    <select id="status" [(ngModel)]="newTask.status" name="status" required>
       <option value="To Do">To Do</option>
       <option value="In Progress">In Progress</option>
       <option value="Done">Done</option>
@@ -40,64 +40,73 @@
     <label for="assignee">Исполнитель:</label>
     <input type="text" id="assignee" [(ngModel)]="newTask.assignee" name="assignee">
 
-    <!-- Creator (generated automatically) -->
-    <input type="hidden" [(ngModel)]="newTask.creator" name="creator">
-
-    <!-- CreatedAt (generated automatically) -->
-    <input type="hidden" [(ngModel)]="newTask.createdAt" name="createdAt">
-
-    <!-- UpdatedAt (generated automatically) -->
-    <input type="hidden" [(ngModel)]="newTask.updatedAt" name="updatedAt">
+    <!-- Creator -->
+    <label for="creator">Создатель:</label>
+    <input type="text" [(ngModel)]="newTask.creator" name="creator" required>
 
     <button type="submit">Добавить задачу</button>
   </form>
 
   <ul>
     <li *ngFor="let task of tasks">
-      <div>
+      <form (submit)="updateTask(task)" ngNativeValidate>
         <div>
-          <label>Номер:</label>
-          <span>{{ task.id }}</span>
+          <div>
+            <label>Номер:</label>
+            <span>{{ task.id }}</span>
+          </div>
+          <div>
+            <label>Тип:</label>
+            <select [(ngModel)]="task.type" name="type{{task.id}}" required>
+              <option value="bug">Bug</option>
+              <option value="task">Task</option>
+            </select>
+          </div>
+          <div>
+            <label>Приоритет:</label>
+            <select [(ngModel)]="task.priority" name="priority{{task.id}}" required>
+              <option value="critical">Critical</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <div>
+            <label>Статус:</label>
+            <select [(ngModel)]="task.status" name="status{{task.id}}" required>
+              <option value="To Do">To Do</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
+          <div>
+            <label>Заголовок:</label>
+            <input [(ngModel)]="task.title" name="title{{task.id}}" required>
+          </div>
+          <div>
+            <label>Описание:</label>
+            <textarea [(ngModel)]="task.description" name="description{{task.id}}"></textarea>
+          </div>
+          <div>
+            <label>Исполнитель:</label>
+            <input [(ngModel)]="task.assignee" name="assignee{{task.id}}">
+          </div>
+          <div>
+            <label>Создатель:</label>
+            <input [(ngModel)]="task.creator" name="creator{{task.id}}" required>
+          </div>
+          <div>
+            <label>Дата создания:</label>
+            <span>{{ task.createdAt | date : 'short' }}</span>
+          </div>
+          <div>
+            <label>Дата последнего изменения:</label>
+            <span>{{ task.updatedAt | date : 'short' }}</span>
+          </div>
+          <button type="submit">Сохранить изменения</button>
+          <button (click)="deleteTask(task.id)">Удалить</button>
         </div>
-        <div>
-          <label>Тип:</label>
-          <span>{{ task.type }}</span>
-        </div>
-        <div>
-          <label>Приоритет:</label>
-          <span>{{ task.priority }}</span>
-        </div>
-        <div>
-          <label>Статус:</label>
-          <input [(ngModel)]="task.status" name="status{{task.id}}">
-        </div>
-        <div>
-          <label>Заголовок:</label>
-          <input [(ngModel)]="task.title" name="title{{task.id}}">
-        </div>
-        <div>
-          <label>Описание:</label>
-          <textarea [(ngModel)]="task.description" name="description{{task.id}}"></textarea>
-        </div>
-        <div>
-          <label>Исполнитель:</label>
-          <input [(ngModel)]="task.assignee" name="assignee{{task.id}}">
-        </div>
-        <div>
-          <label>Создатель:</label>
-          <span>{{ task.creator }}</span>
-        </div>
-        <div>
-          <label>Дата создания:</label>
-          <span>{{ task.createdAt | date : 'short' }}</span>
-        </div>
-        <div>
-          <label>Дата последнего изменения:</label>
-          <span>{{ task.updatedAt | date : 'short' }}</span>
-        </div>
-        <button (click)="updateTask(task)">Сохранить изменения</button>
-        <button (click)="deleteTask(task.id)">Удалить</button>
-      </div>
+      </form>
     </li>
   </ul>
 </div>

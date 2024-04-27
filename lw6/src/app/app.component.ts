@@ -17,7 +17,7 @@ export class AppComponent {
       priority: 'medium',
       status: 'To Do',
       title: '',
-      creator: 'User'
+      creator: ''
    };
 
    constructor() { }
@@ -35,7 +35,7 @@ export class AppComponent {
          priority: 'medium',
          status: 'To Do',
          title: '',
-         creator: 'User'
+         creator: ''
       };
    }
 
