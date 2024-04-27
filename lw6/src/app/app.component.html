@@ -47,7 +47,7 @@
     <button type="submit">Добавить задачу</button>
   </form>
 
-  <ul>
+  <ul class="task-list">
     <li *ngFor="let task of tasks">
       <form (submit)="updateTask(task)" ngNativeValidate>
         <div>
