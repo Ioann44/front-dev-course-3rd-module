@@ -1,0 +1,59 @@
+<!-- deal.component.html -->
+<div>
+	<form (submit)="addDeal($event)" ngNativeValidate>
+		<!-- ID (generated automatically) -->
+		<input type="hidden" [(ngModel)]="newDeal.id" name="id">
+
+		<!-- Description -->
+		<label for="description">Описание:</label>
+		<textarea id="description" [(ngModel)]="newDeal.description" name="description" required></textarea>
+
+		<!-- Price -->
+		<label for="price">Цена:</label>
+		<input type="number" id="price" [(ngModel)]="newDeal.price" name="price" required>
+
+		<!-- Finish Date -->
+		<label for="finishDate">Дата завершения:</label>
+		<input type="date" id="finishDate" [(ngModel)]="newDeal.finishDate" name="finishDate" required>
+
+		<!-- Status -->
+		<label for="status">Статус:</label>
+		<select id="status" [(ngModel)]="newDeal.status" name="status" required>
+			<option value="active">Активен</option>
+			<option value="inactive">Неактивен</option>
+		</select>
+
+		<button type="submit">Добавить сделку</button>
+	</form>
+
+	<ul class="list">
+		<li *ngFor="let deal of deals">
+			<div>
+				<form (submit)="updateDeal($event, deal)" ngNativeValidate>
+					<!-- Форма редактирования для каждого дела -->
+					<div>
+						<label>Описание:</label>
+						<textarea [(ngModel)]="deal.description" name="description" required></textarea>
+					</div>
+					<div>
+						<label>Цена:</label>
+						<input type="number" [(ngModel)]="deal.price" name="price" required>
+					</div>
+					<div>
+						<label>Дата завершения:</label>
+						<input type="date" [(ngModel)]="deal.finishDate" name="finishDate" required>
+					</div>
+					<div>
+						<label>Статус:</label>
+						<select [(ngModel)]="deal.status" name="status" required>
+							<option value="active">Активен</option>
+							<option value="inactive">Неактивен</option>
+						</select>
+					</div>
+					<button type="submit">Сохранить изменения</button>
+					<button (click)="deleteDeal(deal.id)">Удалить</button>
+				</form>
+			</div>
+		</li>
+	</ul>
+</div>

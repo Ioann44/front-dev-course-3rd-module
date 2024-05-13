@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ComplaintListComponent } from './complaint-list/complaint-list.component';
-
+import { ComplaintComponent } from './complaint.component';
 
 
 @NgModule({
   declarations: [
-    ComplaintListComponent
+    ComplaintComponent
   ],
   imports: [
     CommonModule

@@ -37,7 +37,7 @@ form button:hover {
 }
 
 /* Стили для списка задач */
-.task-list {
+.list {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: start;
@@ -45,7 +45,7 @@ form button:hover {
 	padding: 0;
 }
 
-.task-list li {
+.list li {
 	flex: 0 0 calc(33.33% - 10px);
 	/* 33.33% для 3 задач в строке, 10px для отступов */
 	margin: 5px;

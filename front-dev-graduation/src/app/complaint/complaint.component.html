@@ -1,0 +1,47 @@
+<!-- complaint.component.html -->
+<div>
+	<form (submit)="addComplaint($event)" ngNativeValidate>
+		<!-- ID (generated automatically) -->
+		<input type="hidden" [(ngModel)]="newComplaint.id" name="id">
+
+		<!-- Description -->
+		<label for="description">Описание:</label>
+		<textarea id="description" [(ngModel)]="newComplaint.description" name="description" required></textarea>
+
+		<!-- Status -->
+		<label for="status">Статус:</label>
+		<select id="status" [(ngModel)]="newComplaint.status" name="status" required>
+			<option value="active">Активен</option>
+			<option value="inactive">Неактивен</option>
+		</select>
+
+		<button type="submit">Добавить жалобу</button>
+	</form>
+
+	<ul class="list">
+		<li *ngFor="let complaint of complaints">
+			<div>
+				<form (submit)="updateComplaint($event, complaint)" ngNativeValidate>
+					<!-- Форма редактирования для каждой жалобы -->
+					<div>
+						<label>Описание:</label>
+						<textarea [(ngModel)]="complaint.description" name="description" required></textarea>
+					</div>
+					<div>
+						<label>Статус:</label>
+						<select [(ngModel)]="complaint.status" name="status" required>
+							<option value="active">Активен</option>
+							<option value="inactive">Неактивен</option>
+						</select>
+					</div>
+					<div>
+						<label>Дата создания:</label>
+						<span>{{ complaint.createdAt | date : 'short' }}</span>
+					</div>
+					<button type="submit">Сохранить изменения</button>
+					<button (click)="deleteComplaint(complaint.id)">Удалить</button>
+				</form>
+			</div>
+		</li>
+	</ul>
+</div>

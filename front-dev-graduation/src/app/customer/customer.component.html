@@ -1,112 +1,67 @@
-<!-- app.component.html -->
+<!-- customer.component.html -->
 <div>
-	<form (submit)="addTask($event)" ngNativeValidate>
-		<!-- Number (generated automatically) -->
-		<input type="hidden" [(ngModel)]="newTask.id" name="id">
+	<form (submit)="addCustomer($event)" ngNativeValidate>
+		<!-- ID (generated automatically) -->
+		<input type="hidden" [(ngModel)]="newCustomer.id" name="id">
 
-		<!-- Type (bug or task) -->
-		<label for="type">Тип:</label>
-		<select id="type" [(ngModel)]="newTask.type" name="type" required>
-			<option value="bug">Bug</option>
-			<option value="task">Task</option>
-		</select>
+		<!-- First Name -->
+		<label for="firstName">Имя:</label>
+		<input type="text" id="firstName" [(ngModel)]="newCustomer.firstName" name="firstName" required>
 
-		<!-- Priority (critical/high/medium/low) -->
-		<label for="priority">Приоритет:</label>
-		<select id="priority" [(ngModel)]="newTask.priority" name="priority" required>
-			<option value="critical">Critical</option>
-			<option value="high">High</option>
-			<option value="medium" selected>Medium</option>
-			<option value="low">Low</option>
-		</select>
+		<!-- Last Name -->
+		<label for="lastName">Фамилия:</label>
+		<input type="text" id="lastName" [(ngModel)]="newCustomer.lastName" name="lastName" required>
+
+		<!-- Contact Info -->
+		<label for="contactInfo">Контактная информация:</label>
+		<input type="text" id="contactInfo" [(ngModel)]="newCustomer.contactInfo" name="contactInfo" required>
+
+		<!-- History -->
+		<label for="history">История:</label>
+		<textarea id="history" [(ngModel)]="newCustomer.history" name="history"></textarea>
 
 		<!-- Status -->
 		<label for="status">Статус:</label>
-		<select id="status" [(ngModel)]="newTask.status" name="status" required>
-			<option value="To Do">To Do</option>
-			<option value="In Progress">In Progress</option>
-			<option value="Done">Done</option>
+		<select id="status" [(ngModel)]="newCustomer.status" name="status" required>
+			<option value="active">Активен</option>
+			<option value="inactive">Неактивен</option>
 		</select>
 
-		<!-- Title -->
-		<label for="title">Заголовок:</label>
-		<input type="text" id="title" [(ngModel)]="newTask.title" name="title" required>
-
-		<!-- Description -->
-		<label for="description">Описание:</label>
-		<textarea id="description" [(ngModel)]="newTask.description" name="description"></textarea>
-
-		<!-- Assignee -->
-		<label for="assignee">Исполнитель:</label>
-		<input type="text" id="assignee" [(ngModel)]="newTask.assignee" name="assignee">
-
-		<!-- Creator -->
-		<label for="creator">Создатель:</label>
-		<input type="text" [(ngModel)]="newTask.creator" name="creator" required>
-
-		<button type="submit">Добавить задачу</button>
+		<button type="submit">Добавить клиента</button>
 	</form>
 
-	<ul class="task-list">
-		<li *ngFor="let task of tasks">
-			<form (submit)="updateTask(task)" ngNativeValidate>
-				<div>
+	<ul class="list">
+		<li *ngFor="let customer of customers">
+			<div>
+				<form (submit)="updateCustomer($event, customer)" ngNativeValidate>
+					<!-- Форма редактирования для каждого клиента -->
 					<div>
-						<label>Номер:</label>
-						<span>{{ task.id }}</span>
+						<label>Имя:</label>
+						<input [(ngModel)]="customer.firstName" name="firstName" required>
 					</div>
 					<div>
-						<label>Тип:</label>
-						<select [(ngModel)]="task.type" name="type{{task.id}}" required>
-							<option value="bug">Bug</option>
-							<option value="task">Task</option>
-						</select>
+						<label>Фамилия:</label>
+						<input [(ngModel)]="customer.lastName" name="lastName" required>
 					</div>
 					<div>
-						<label>Приоритет:</label>
-						<select [(ngModel)]="task.priority" name="priority{{task.id}}" required>
-							<option value="critical">Critical</option>
-							<option value="high">High</option>
-							<option value="medium">Medium</option>
-							<option value="low">Low</option>
-						</select>
+						<label>Контактная информация:</label>
+						<input [(ngModel)]="customer.contactInfo" name="contactInfo" required>
+					</div>
+					<div>
+						<label>История:</label>
+						<textarea [(ngModel)]="customer.history" name="history"></textarea>
 					</div>
 					<div>
 						<label>Статус:</label>
-						<select [(ngModel)]="task.status" name="status{{task.id}}" required>
-							<option value="To Do">To Do</option>
-							<option value="In Progress">In Progress</option>
-							<option value="Done">Done</option>
+						<select [(ngModel)]="customer.status" name="status" required>
+							<option value="active">Активен</option>
+							<option value="inactive">Неактивен</option>
 						</select>
 					</div>
-					<div>
-						<label>Заголовок:</label>
-						<input [(ngModel)]="task.title" name="title{{task.id}}" required>
-					</div>
-					<div>
-						<label>Описание:</label>
-						<textarea [(ngModel)]="task.description" name="description{{task.id}}"></textarea>
-					</div>
-					<div>
-						<label>Исполнитель:</label>
-						<input [(ngModel)]="task.assignee" name="assignee{{task.id}}">
-					</div>
-					<div>
-						<label>Создатель:</label>
-						<input [(ngModel)]="task.creator" name="creator{{task.id}}" required>
-					</div>
-					<div>
-						<label>Дата создания:</label>
-						<span>{{ task.createdAt | date : 'short' }}</span>
-					</div>
-					<div>
-						<label>Дата последнего изменения:</label>
-						<span>{{ task.updatedAt | date : 'short' }}</span>
-					</div>
 					<button type="submit">Сохранить изменения</button>
-					<button (click)="deleteTask(task.id)">Удалить</button>
-				</div>
-			</form>
+					<button (click)="deleteCustomer(customer.id)">Удалить</button>
+				</form>
+			</div>
 		</li>
 	</ul>
 </div>

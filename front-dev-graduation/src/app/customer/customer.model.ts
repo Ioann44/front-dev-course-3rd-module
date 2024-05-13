@@ -3,6 +3,6 @@ export interface Customer {
 	firstName: string;
 	lastName: string;
 	contactInfo: string;
-	history: any[];
+	history: string;
 	status: string;
 }

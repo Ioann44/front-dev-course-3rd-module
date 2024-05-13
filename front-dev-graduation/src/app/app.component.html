@@ -8,30 +8,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <style>
-   .navigation-panel {
+    .navigation-panel {
       display: flex;
       justify-content: space-around;
       padding: 10px;
-      background-color: #f0f0f0; /* Светло-серый фон */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень под панелью */
+      background-color: #f0f0f0;
+      /* Светло-серый фон */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      /* Тень под панелью */
       margin-bottom: 20px;
     }
-   .navigation-panel a {
+
+    .navigation-panel a {
       text-decoration: none;
       color: blue;
       margin: 0 10px;
     }
-   .navigation-panel a:hover {
-      color: darkblue; /* Темно-синий цвет при наведении */
+
+    .navigation-panel a:hover {
+      color: darkblue;
+      /* Темно-синий цвет при наведении */
     }
   </style>
 </head>
 
 <body>
   <div class="navigation-panel">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Страница 1</a>
-    <a [routerLink]="['/page2', 'некоторое значение']">Страница 2</a>
-    <a routerLink="/page3">Страница 3</a>
+    <a routerLink="/customers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Клиенты</a>
+    <a routerLink="/deals">Сделки</a>
+    <a routerLink="/complaints">Жалобы</a>
   </div>
   <router-outlet></router-outlet>
 </body>

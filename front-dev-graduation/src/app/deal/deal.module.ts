@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DealListComponent } from './deal-list/deal-list.component';
-
+import { DealComponent } from './deal.component';
 
 
 @NgModule({
   declarations: [
-    DealListComponent
+    DealComponent
   ],
   imports: [
     CommonModule
