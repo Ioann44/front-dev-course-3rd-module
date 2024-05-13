@@ -1,0 +1,29 @@
+{
+  "deals": [
+    {
+      "id": "9a93",
+      "description": "Сделка 1",
+      "price": 1234,
+      "finishDate": "2024-05-14",
+      "status": "inactive"
+    }
+  ],
+  "customers": [
+    {
+      "id": "a7bb",
+      "firstName": "Василий",
+      "lastName": "Иванов",
+      "contactInfo": "тел: +7 (833) 123-45-67",
+      "history": "Заказ товара 1\nЗаказ услуги 2",
+      "status": "active"
+    }
+  ],
+  "complaints": [
+    {
+      "id": "8395",
+      "description": "Услуга выполнена плохо",
+      "status": "active",
+      "createdAt": "2024-05-13T16:57:22.602Z"
+    }
+  ]
+}

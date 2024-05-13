@@ -40,14 +40,11 @@
     },
     {
       "label": "Start json server",
-      "type": "process",
-      "command": [
-        "npx",
+      "type": "shell",
+      "command": "npx",
+      "args": [
         "json-server",
-        "--watch",
-        "src/assets/customers.json",
-        "--port",
-        "3000"
+        "src/db.json"
       ],
       "problemMatcher": []
     }
