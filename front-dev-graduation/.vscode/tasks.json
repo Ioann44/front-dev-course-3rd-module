@@ -37,6 +37,19 @@
           }
         }
       }
+    },
+    {
+      "label": "Start json server",
+      "type": "process",
+      "command": [
+        "npx",
+        "json-server",
+        "--watch",
+        "src/assets/customers.json",
+        "--port",
+        "3000"
+      ],
+      "problemMatcher": []
     }
   ]
 }

@@ -1,112 +1,39 @@
 <!-- app.component.html -->
-<div>
-  <form (submit)="addTask($event)" ngNativeValidate>
-    <!-- Number (generated automatically) -->
-    <input type="hidden" [(ngModel)]="newTask.id" name="id">
+<!doctype html>
+<html lang="en">
 
-    <!-- Type (bug or task) -->
-    <label for="type">Тип:</label>
-    <select id="type" [(ngModel)]="newTask.type" name="type" required>
-      <option value="bug">Bug</option>
-      <option value="task">Task</option>
-    </select>
+<head>
+  <meta charset="utf-8">
+  <title>Работа с клиентами</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+   .navigation-panel {
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+      background-color: #f0f0f0; /* Светло-серый фон */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень под панелью */
+      margin-bottom: 20px;
+    }
+   .navigation-panel a {
+      text-decoration: none;
+      color: blue;
+      margin: 0 10px;
+    }
+   .navigation-panel a:hover {
+      color: darkblue; /* Темно-синий цвет при наведении */
+    }
+  </style>
+</head>
 
-    <!-- Priority (critical/high/medium/low) -->
-    <label for="priority">Приоритет:</label>
-    <select id="priority" [(ngModel)]="newTask.priority" name="priority" required>
-      <option value="critical">Critical</option>
-      <option value="high">High</option>
-      <option value="medium" selected>Medium</option>
-      <option value="low">Low</option>
-    </select>
+<body>
+  <div class="navigation-panel">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Страница 1</a>
+    <a [routerLink]="['/page2', 'некоторое значение']">Страница 2</a>
+    <a routerLink="/page3">Страница 3</a>
+  </div>
+  <router-outlet></router-outlet>
+</body>
 
-    <!-- Status -->
-    <label for="status">Статус:</label>
-    <select id="status" [(ngModel)]="newTask.status" name="status" required>
-      <option value="To Do">To Do</option>
-      <option value="In Progress">In Progress</option>
-      <option value="Done">Done</option>
-    </select>
-
-    <!-- Title -->
-    <label for="title">Заголовок:</label>
-    <input type="text" id="title" [(ngModel)]="newTask.title" name="title" required>
-
-    <!-- Description -->
-    <label for="description">Описание:</label>
-    <textarea id="description" [(ngModel)]="newTask.description" name="description"></textarea>
-
-    <!-- Assignee -->
-    <label for="assignee">Исполнитель:</label>
-    <input type="text" id="assignee" [(ngModel)]="newTask.assignee" name="assignee">
-
-    <!-- Creator -->
-    <label for="creator">Создатель:</label>
-    <input type="text" [(ngModel)]="newTask.creator" name="creator" required>
-
-    <button type="submit">Добавить задачу</button>
-  </form>
-
-  <ul class="task-list">
-    <li *ngFor="let task of tasks">
-      <form (submit)="updateTask(task)" ngNativeValidate>
-        <div>
-          <div>
-            <label>Номер:</label>
-            <span>{{ task.id }}</span>
-          </div>
-          <div>
-            <label>Тип:</label>
-            <select [(ngModel)]="task.type" name="type{{task.id}}" required>
-              <option value="bug">Bug</option>
-              <option value="task">Task</option>
-            </select>
-          </div>
-          <div>
-            <label>Приоритет:</label>
-            <select [(ngModel)]="task.priority" name="priority{{task.id}}" required>
-              <option value="critical">Critical</option>
-              <option value="high">High</option>
-              <option value="medium">Medium</option>
-              <option value="low">Low</option>
-            </select>
-          </div>
-          <div>
-            <label>Статус:</label>
-            <select [(ngModel)]="task.status" name="status{{task.id}}" required>
-              <option value="To Do">To Do</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Done">Done</option>
-            </select>
-          </div>
-          <div>
-            <label>Заголовок:</label>
-            <input [(ngModel)]="task.title" name="title{{task.id}}" required>
-          </div>
-          <div>
-            <label>Описание:</label>
-            <textarea [(ngModel)]="task.description" name="description{{task.id}}"></textarea>
-          </div>
-          <div>
-            <label>Исполнитель:</label>
-            <input [(ngModel)]="task.assignee" name="assignee{{task.id}}">
-          </div>
-          <div>
-            <label>Создатель:</label>
-            <input [(ngModel)]="task.creator" name="creator{{task.id}}" required>
-          </div>
-          <div>
-            <label>Дата создания:</label>
-            <span>{{ task.createdAt | date : 'short' }}</span>
-          </div>
-          <div>
-            <label>Дата последнего изменения:</label>
-            <span>{{ task.updatedAt | date : 'short' }}</span>
-          </div>
-          <button type="submit">Сохранить изменения</button>
-          <button (click)="deleteTask(task.id)">Удалить</button>
-        </div>
-      </form>
-    </li>
-  </ul>
-</div>
+</html>
